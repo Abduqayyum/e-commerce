@@ -1,0 +1,66 @@
+{% extends 'store/layouts/main.html' %}
+
+{% block title %}
+    home page
+{% endblock title %}
+
+{% block content %}
+
+{% include "store/inc/slider.html" %}
+{% if trending_products %}
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-mid-12">
+                <h1>Trending Products</h1>
+                <hr>
+                <div class="row">
+                    {% for item in trending_products %}
+                        <div class="col-md-3 product_data">
+                            <div class="card"> 
+                                    <div class="card-body">
+                                    <a href="{% url 'productview' item.category.slug item.slug %}">  
+                                        <div class="category-image">
+                                            <img src="{{item.product_image.url}}" class="w-100" height="200px" alt="Product image">
+                                        </div>
+                                        <h4 class="text-center">{{item.name|title}}</h4>
+                                    </a>
+                                        <span class="float-start"><s>{{ item.orginal_price|stringformat:'d' }}</s>$</span>
+                                        <span class="float-end">{{ item.selling_price|stringformat:'d' }}$</span>
+                                        <span class="float-end mb-2">
+                                            <div class="row mt-2">
+                                                <div class="col-md-6">
+                                                    {% csrf_token %}
+                                                    <input type="hidden" value="{{ item.id }}" class="prod_id">
+                                    
+                                                    <br>
+                                                    <div class="input-group text-center mg-3" >
+                                                        <button class="input-group-text decrement-btn">-</button>
+                                                        <input type="text" name="quantity" class="form-control text-center qty-input" value=1>
+                                                        <button class="input-group-text increment-btn">+</button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 px-0">
+                                                    <br>
+                                                    {% if item.quantity > 0 %}
+                                                        <button class="btn btn-primary me-3 float-start addToCartBtn btn-sm" type="button">Add to Card</button>
+                                                    {% else %}
+                                                        <button class="btn btn-danger me-3 float-start btn-sm disabled" type="button">Out of Stock</button>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            
+                                        </span>
+                                    </div>
+                
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% else %}
+    There is no trending product
+{% endif %}
+
+{% endblock content %}
