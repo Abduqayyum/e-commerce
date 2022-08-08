@@ -30,7 +30,7 @@ $(document).ready(function (){
             var token = $('input[name=csrfmiddlewaretoken]').val();
             $.ajax({
                 type: "POST",
-                url: "/add-to-cart",
+                url: RootUrl + "/add-to-cart",
                 data: {
                     "product_id": product_id,
                     "product_qty": product_qty,
@@ -50,7 +50,7 @@ $(document).ready(function (){
             var token = $('input[name=csrfmiddlewaretoken]').val();
             $.ajax({
                 type: "POST",
-                url: "/add-to-wishlist",
+                url: RootUrl + "/add-to-wishlist",
                 data: {
                     "product_id": product_id,
                     csrfmiddlewaretoken: token
@@ -71,7 +71,7 @@ $(document).ready(function (){
             var token = $('input[name=csrfmiddlewaretoken]').val();
             $.ajax({
                 type: "POST",
-                url: "/update-cart",
+                url: RootUrl + "/update-cart",
                 data: {
                     "product_id": product_id,
                     "product_qty": product_qty,
@@ -92,7 +92,7 @@ $(document).ready(function (){
             var token = $('input[name=csrfmiddlewaretoken]').val();
             $.ajax({
                 type: "POST",
-                url: "/delete-wishlist-item",
+                url: RootUrl + "/delete-wishlist-item",
                 data: {
                     "product_id": product_id,
                     csrfmiddlewaretoken: token
@@ -114,7 +114,7 @@ $(document).ready(function (){
             var token = $('input[name=csrfmiddlewaretoken]').val();
             $.ajax({
                 type: "POST",
-                url: "/delete-cart-item",
+                url: RootUrl + "/delete-cart-item",
                 data: {
                     "product_id": product_id,
                     csrfmiddlewaretoken: token

@@ -181,7 +181,7 @@
             
               $.ajax({
                   type: "POST",
-                  url: "/placeorder",
+                  url: RootUrl + "/placeorder",
                   data: data,
                   success: function (response) {
                       swal("Congratulations!", response.status, "success").then((value) => {
