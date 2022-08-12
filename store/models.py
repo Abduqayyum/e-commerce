@@ -74,7 +74,7 @@ class Order(models.Model):
     pincode = models.CharField(max_length=150, null=False)
     total_price = models.FloatField(null=False)
     payment_mode = models.CharField(max_length=150, null=False)
-    payment_id = models.CharField(max_length=250, null=False)
+    payment_id = models.CharField(max_length=250, null=True)
     orderstatuser = (
         ("Pending", "Pending"),
         ("Out for Shipping", "Out for Shipping"),

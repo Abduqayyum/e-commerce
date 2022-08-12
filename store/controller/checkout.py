@@ -49,7 +49,6 @@ def placeorder(request):
             userprofile.state = request.POST.get("state")
             userprofile.country = request.POST.get("country")
             userprofile.pincode = request.POST.get("pincode")
-            print(f"sdsjdflsjfsjdf {request.POST.get('pincode')}")
             userprofile.save()
 
 
@@ -66,8 +65,9 @@ def placeorder(request):
         neworder.pincode = request.POST.get("pincode")
 
         neworder.payment_mode = request.POST.get("payment_mode")
+        print(request.POST.get("payment_id"))
         neworder.payment_id = request.POST.get("payment_id")
-
+       
 
         cart = Card.objects.filter(user=request.user)
         cart_total_price = 0
@@ -75,9 +75,9 @@ def placeorder(request):
             cart_total_price = cart_total_price + item.product.selling_price * item.product_qty
         
         neworder.total_price = cart_total_price
-        trackno = "Jack" + str(random.randint(111111,999999))
+        trackno = request.user.username + str(random.randint(111111,999999))
         while Order.objects.filter(tracking_no=trackno) is None:
-            trackno = "Jack" + str(random.randint(111111,999999))
+            trackno = request.user.username + str(random.randint(111111,999999))
         
         neworder.tracking_no = trackno
         neworder.save()
